@@ -37,6 +37,7 @@
     <dependencyManagement>
         <dependencies>
 
+
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
@@ -81,6 +82,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
+
     </dependencies>
 
 
