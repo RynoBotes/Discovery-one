@@ -3,24 +3,65 @@ package za.ac.nwu.acsy.domain.persistence;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
-@Table(name = "MEMBER_ACCOUNT")
-public class AccountType implements Serializable
-{
+@Table(name = "ACCOUNT_TYPE")
+public class AccountType implements Serializable {
+
+    private static final long serialVersionUID = 6768375643820438880L;
+    private Long accountTypeId;
+    private String accountTypeName;
+    private LocalDate CreationDate;
+    Set<MemberAccount> memberAccountSet;
+
+    public AccountType() {
+    }
+
+    public AccountType(Long accountTypeId, String accountTypeName, LocalDate creationDate) {
+        this.accountTypeId = accountTypeId;
+        this.accountTypeName = accountTypeName;
+        CreationDate = creationDate;
+    }
+
+    @OneToMany(targetEntity = MemberAccount.class,fetch = FetchType.LAZY, mappedBy = "accountTypeId",orphanRemoval = true,cascade = CascadeType.PERSIST)
+    public Set<MemberAccount> getMemberAccountSet() {
+        return memberAccountSet;
+    }
+
+
+
     @Id
-    @SequenceGenerator(name="ACCOUNT_ROW_SEQ", sequenceName = "ACCOUNT_ID_SEQ",allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_ID_SEQ")
-    @Column(name = "ROW_ID")
-    private long rowId;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_TYPE_SEQ")
+    @SequenceGenerator(name = "ACCOUNT_TYPE_SEQ", sequenceName = "ACCOUNT_TYPE_ID_SEQ", allocationSize = 1)
+    @Column(name = "ACCOUNT_TYPE_ID", nullable = false)
+    public Long getAccountTypeId() {
+        return accountTypeId;
+    }
 
-    @Column(name = "MEMBER_ID")
-    private long memberId;
+    @Column(name = "ACCOUNT_TYPE_NAME")
+    public String getAccountTypeName() {
+        return accountTypeName;
+    }
 
-    @Column(name = "CURR_AMOUNT")
-    private long currAmount;
+    @Column(name = "CREATION_DATE")
+    public LocalDate getCreationDate() {
+        return CreationDate;
+    }
 
-    @Column(name = "CURRENCY_TYPE")
-    private String currencyType;
+    public void setAccountTypeId(Long accountTypeId) {
+        this.accountTypeId = accountTypeId;
+    }
+
+    public void setAccountTypeName(String accountTypeName) {
+        this.accountTypeName = accountTypeName;
+    }
+
+    public void setCreationDate(LocalDate creationDate) {
+        CreationDate = creationDate;
+    }
+    public void setMemberAccountSet(Set<MemberAccount> memberAccountSet) {
+        this.memberAccountSet = memberAccountSet;
+    }
 
 }

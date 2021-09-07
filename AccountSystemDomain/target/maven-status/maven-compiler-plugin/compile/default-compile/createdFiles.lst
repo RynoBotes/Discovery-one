@@ -1,3 +1,4 @@
-za\ac\nwu\acsy\domain\persistence\AccountMember.class
 za\ac\nwu\acsy\domain\service\GeneralResponse.class
 za\ac\nwu\acsy\domain\persistence\AccountType.class
+za\ac\nwu\acsy\domain\persistence\MemberInfo.class
+za\ac\nwu\acsy\domain\persistence\MemberAccount.class

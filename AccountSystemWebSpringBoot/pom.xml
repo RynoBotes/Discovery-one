@@ -30,17 +30,8 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>za.ac.nwu.acsy</groupId>
-            <artifactId>AccountSystemDomain</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>za.ac.nwu.acsy</groupId>
-            <artifactId>AccountSystemLogic</artifactId>
+            <artifactId>AccountSystemRepository</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -63,18 +54,19 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-bean-validators</artifactId>
         </dependency>
-
-
-
     </dependencies>
+
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
             </plugin>
         </plugins>
     </build>
 
-    
+
+
 </project>

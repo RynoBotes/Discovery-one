@@ -1,23 +1,57 @@
 package za.ac.nwu.acsy.domain.service;
 
-public class GeneralResponse<String>
-{   private final String id;
-    private final String content;
+import java.io.Serializable;
+import java.util.Objects;
 
-    public GeneralResponse(String id, String content) {
+public class GeneralResponse<T> implements Serializable
+{
+    private static final long serialVersionUID = 194240556062590168L;
 
-        this.id = id;
-        this.content = content;
-    }
-    public String getId()
+
+    private final boolean successful;
+    private final transient T payload;
+
+    public GeneralResponse(boolean successful, T payload)
     {
-        return id;
-    }
-
-    public String getContent()
-    {
-        return content;
+        this.payload = payload;
+        this.successful = successful;
     }
 
 
+    public boolean isSuccessful() {
+        return successful;
+    }
+
+//    public void setSuccessful(boolean successful) {
+//        this.successful = successful;
+//    }
+
+    public T getPayload() {
+        return payload;
+    }
+
+//    public void setPayload(T payload) {
+//        this.payload = payload;
+//    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GeneralResponse<?> that = (GeneralResponse<?>) o;
+        return successful == that.successful && Objects.equals(payload, that.payload);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(successful, payload);
+    }
+
+    @Override
+    public String toString() {
+        return "GeneralResponse{" +
+                "successful=" + successful +
+                ", payload=" + payload +
+                '}';
+    }
 }

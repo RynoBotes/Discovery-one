@@ -1,0 +1,4 @@
+za\ac\nwu\acsy\repo\config\RepositoryConfig.class
+za\ac\nwu\acsy\repo\persistence\MemberInfoRepository.class
+za\ac\nwu\acsy\repo\persistence\MemberAccountRepository.class
+za\ac\nwu\acsy\repo\persistence\AccountTypeRepository.class
