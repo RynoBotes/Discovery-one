@@ -61,5 +61,25 @@ public class AccountTypeController
         return new ResponseEntity<>(response,HttpStatus.CREATED);
     }
 
+    @GetMapping("{accountTypeName}")
+    @ApiOperation(value = "Fetch specified account type",notes = "Fetch specified account type corresponding to accountTypeName")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200,message = "Account Returned"),
+            @ApiResponse(code = 400,message = "Bad request", response = GeneralResponse.class),
+            @ApiResponse(code = 404,message = "Not Found", response = GeneralResponse.class),
+            @ApiResponse(code = 500,message = "Internal Server error", response = GeneralResponse.class)
+    })
+    public ResponseEntity<GeneralResponse<AccountTypeDto>> getAccountType(
+            @ApiParam(value = "The name that uniquely identifies the account type.",
+            example = "MILES",
+            name = "accountTypeName",
+            required = true)
+            @PathVariable("accountTypeName") final String accountTypeName)
+    {
+        AccountTypeDto accountType = fetchAccountTypeFlow.getAccountTypeByName(accountTypeName);
+        GeneralResponse<AccountTypeDto> response = new GeneralResponse<>(true,accountType);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 
 }

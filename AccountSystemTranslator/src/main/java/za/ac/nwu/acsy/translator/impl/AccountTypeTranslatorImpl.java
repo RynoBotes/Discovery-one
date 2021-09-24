@@ -22,6 +22,8 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator
     }
 
 
+
+
     @Override
     public List<AccountTypeDto> getAllAccountTypes() {
         List<AccountTypeDto> accountTypeDtos = new ArrayList<>();
@@ -48,6 +50,19 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator
         }catch(Exception e)
         {
             throw new RuntimeException("Unable to save to the DB",e);
+        }
+    }
+
+    @Override
+    public AccountTypeDto getAccountTypeByName(String accountTypeName)
+    {
+        try{
+            AccountType accountType = accountTypeRepository.getAccountTypeByName(accountTypeName);
+            return new AccountTypeDto(accountType);
+
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Unable to read from Database",e);
         }
     }
 

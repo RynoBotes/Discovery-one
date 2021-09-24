@@ -8,5 +8,6 @@ public interface FetchAccountTypeFlow
 {
     List<AccountTypeDto> getAllAccountTypes();
 
-    
+
+    AccountTypeDto getAccountTypeByName(String accountTypeName);
 }

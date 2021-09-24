@@ -27,4 +27,11 @@ public class FetchAccountTypeFLowImpl implements FetchAccountTypeFlow
     {
         return accountTypeTranslator.getAllAccountTypes();
     }
+
+    @Override
+    public AccountTypeDto getAccountTypeByName(String accountTypeName) {
+        return accountTypeTranslator.getAccountTypeByName(accountTypeName);
+    }
+
+
 }
