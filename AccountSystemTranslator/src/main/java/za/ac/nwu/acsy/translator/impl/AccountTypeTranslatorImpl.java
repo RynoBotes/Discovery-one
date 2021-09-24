@@ -1,6 +1,7 @@
 package za.ac.nwu.acsy.translator.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import za.ac.nwu.acsy.domain.dto.AccountTypeDto;
 import za.ac.nwu.acsy.domain.persistence.AccountType;
 import za.ac.nwu.acsy.repo.persistence.AccountTypeRepository;
@@ -9,7 +10,9 @@ import za.ac.nwu.acsy.translator.AccountTypeTranslator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
+@Component
+public class AccountTypeTranslatorImpl implements AccountTypeTranslator
+{
     AccountTypeRepository accountTypeRepository;
 
     @Autowired
@@ -34,4 +37,18 @@ public class AccountTypeTranslatorImpl implements AccountTypeTranslator {
 
         return accountTypeDtos;
     }
+
+    @Override
+    public AccountTypeDto create(AccountTypeDto accountTypeDto)
+    {
+        try
+        {
+            AccountType accountType = accountTypeRepository.save(accountTypeDto.getAccountType());
+            return new AccountTypeDto(accountType);
+        }catch(Exception e)
+        {
+            throw new RuntimeException("Unable to save to the DB",e);
+        }
+    }
+
 }

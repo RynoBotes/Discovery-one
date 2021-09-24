@@ -1,11 +1,16 @@
 package za.ac.nwu.acsy.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import za.ac.nwu.acsy.domain.persistence.MemberInfo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+@ApiModel(value = "MemberInfo",
+        description = "A dto that represents the Member Information")
 public class MemberInfoDto implements Serializable
 {
     private String name;
@@ -30,14 +35,35 @@ public class MemberInfoDto implements Serializable
         this.setJoinDate(memberInfo.getJoinedDate());
     }
 
+    @ApiModelProperty(position = 1,
+            value = "MemberInfo Name",
+            name = "Name",
+            notes = "The name of the Member",
+            dataType = "java.lang.String",
+            example = "Chavonne",
+            required = true)
     public String getName() {
         return name;
     }
 
+    @ApiModelProperty(position = 2,
+            value = "MemberInfo surname",
+            name = "surname",
+            notes = "The surname of the member",
+            dataType = "java.lang.String",
+            example = "Jackson",
+            required = true)
     public String getSurname() {
         return surname;
     }
 
+    @ApiModelProperty(position = 3,
+            value = "MemberInfo JoinDate",
+            name = "Joined Date",
+            notes = "The Joining date of the member",
+            dataType = "java.lang.String",
+            example = "1999-05-10",
+            required = true)
     public LocalDate getJoinDate() {
         return joinDate;
     }
@@ -53,6 +79,7 @@ public class MemberInfoDto implements Serializable
     public void setJoinDate(LocalDate joinDate) {
         this.joinDate = joinDate;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -77,4 +104,9 @@ public class MemberInfoDto implements Serializable
     }
 
 
+    @JsonIgnore
+    public MemberInfo getMemberInfo()
+    {
+        return new MemberInfo(getName(),getSurname(),getJoinDate());
+    }
 }

@@ -1,1 +1,5 @@
 za\ac\nwu\acsy\translator\config\TranslatorConfig.class
+za\ac\nwu\acsy\translator\MemberInfoTranslator.class
+za\ac\nwu\acsy\translator\AccountTypeTranslator.class
+za\ac\nwu\acsy\translator\impl\MemberInfoTranslatorImpl.class
+za\ac\nwu\acsy\translator\impl\AccountTypeTranslatorImpl.class

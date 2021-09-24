@@ -14,8 +14,10 @@ public class MemberInfo implements Serializable
     //private MemberAccount accountId;
     private String name;
     private String surname;
-    private LocalDate JoinedDate;
+    private LocalDate joinedDate;
     Set<MemberAccount> memberAccountSet2;
+
+
 
     @OneToMany(targetEntity = MemberAccount.class,fetch = FetchType.LAZY, mappedBy = "memberInfoId",orphanRemoval = true,cascade = CascadeType.PERSIST)
     public Set<MemberAccount> getMemberAccountSet2() {
@@ -29,6 +31,26 @@ public class MemberInfo implements Serializable
 
 
     private static final long serialVersionUID = -6632562936635239413L;
+
+    public MemberInfo() {
+    }
+
+    public MemberInfo(String name, String surname, LocalDate joinDate)
+    {
+        this.name = name;
+        this.surname = surname;
+        this.joinedDate = joinDate;
+    }
+
+
+
+    public MemberInfo(Long memberId, String name, String surname, LocalDate joinedDate) {
+        this.memberId = memberId;
+        this.name = name;
+        this.surname = surname;
+        this.joinedDate = joinedDate;
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MEMBER_SEQ")
@@ -56,7 +78,7 @@ public class MemberInfo implements Serializable
 
     @Column(name = "JOINED_DATE")
     public LocalDate getJoinedDate() {
-        return JoinedDate;
+        return joinedDate;
     }
 
     public void setMemberId(Long memberId) {
@@ -75,8 +97,7 @@ public class MemberInfo implements Serializable
         this.surname = surname;
     }
 
-    public void setJoinedDate(LocalDate joinedDate) {
-        JoinedDate = joinedDate;
+    public void setJoinedDate(LocalDate joinedDate){this.joinedDate = joinedDate;
     }
 
     @Override
@@ -84,12 +105,12 @@ public class MemberInfo implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MemberInfo that = (MemberInfo) o;
-        return Objects.equals(memberId, that.memberId) && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(JoinedDate, that.JoinedDate);
+        return Objects.equals(memberId, that.memberId) && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(joinedDate, that.joinedDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(memberId, name, surname, JoinedDate);
+        return Objects.hash(memberId, name, surname, joinedDate);
     }
 
     @Override
@@ -98,7 +119,7 @@ public class MemberInfo implements Serializable
                 "memberId=" + memberId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", JoinedDate=" + JoinedDate +
+                ", JoinedDate=" + joinedDate +
                 '}';
     }
 }

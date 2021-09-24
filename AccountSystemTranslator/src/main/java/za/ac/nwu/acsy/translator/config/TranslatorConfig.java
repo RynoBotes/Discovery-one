@@ -10,7 +10,7 @@ import za.ac.nwu.acsy.repo.config.RepositoryConfig;
 @ComponentScan(basePackages = {
         "za.ac.nwu.acsy.translator"
 })
-public class TranslatorConfig {
-
+public class TranslatorConfig
+{
 
 }

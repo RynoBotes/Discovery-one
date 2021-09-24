@@ -1,11 +1,17 @@
 package za.ac.nwu.acsy.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import za.ac.nwu.acsy.domain.persistence.AccountType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
+@ApiModel(value = "AccountType",
+            description = "A dto that represents the AccountType")
 public class AccountTypeDto implements Serializable
 {
     private String accountTypeName;
@@ -18,7 +24,7 @@ public class AccountTypeDto implements Serializable
 
     public AccountTypeDto(String accountTypeName, LocalDate creationDate) {
         this.accountTypeName = accountTypeName;
-        CreationDate = creationDate;
+        this.CreationDate = creationDate;
     }
 
     public AccountTypeDto(AccountType accountType) {
@@ -26,8 +32,13 @@ public class AccountTypeDto implements Serializable
         this.setCreationDate(accountType.getCreationDate());
     }
 
-
-
+    @ApiModelProperty(position = 1,
+            value = "AccountType Name",
+            name = "Name",
+            notes = "The name of the account type",
+            dataType = "java.lang.String",
+            example = "MILES",
+            required = true)
     public String getAccountTypeName() {
         return accountTypeName;
     }
@@ -36,12 +47,25 @@ public class AccountTypeDto implements Serializable
         this.accountTypeName = accountTypeName;
     }
 
+    @ApiModelProperty(position = 2,
+            value = "AccountType Creation Date",
+            name = "CreationDate",
+            notes = "The CreationDate of the account type",
+            dataType = "java.lang.String",
+            example = "2020-01-02",
+            allowEmptyValue = true)
     public LocalDate getCreationDate() {
         return CreationDate;
     }
 
     public void setCreationDate(LocalDate creationDate) {
         CreationDate = creationDate;
+    }
+
+    @JsonIgnore
+    public AccountType getAccountType()
+    {
+        return new AccountType(getAccountTypeName(),getCreationDate());
     }
 
     @Override

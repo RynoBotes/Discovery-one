@@ -12,7 +12,7 @@ public class AccountType implements Serializable {
     private static final long serialVersionUID = 6768375643820438880L;
     private Long accountTypeId;
     private String accountTypeName;
-    private LocalDate CreationDate;
+    private LocalDate creationDate;
     Set<MemberAccount> memberAccountSet;
 
     public AccountType() {
@@ -21,7 +21,13 @@ public class AccountType implements Serializable {
     public AccountType(Long accountTypeId, String accountTypeName, LocalDate creationDate) {
         this.accountTypeId = accountTypeId;
         this.accountTypeName = accountTypeName;
-        CreationDate = creationDate;
+        this.creationDate = creationDate;
+    }
+
+    public AccountType(String accountTypeName, LocalDate creationDate)
+    {
+        this.accountTypeName = accountTypeName;
+        this.creationDate = creationDate;
     }
 
     @OneToMany(targetEntity = MemberAccount.class,fetch = FetchType.LAZY, mappedBy = "accountTypeId",orphanRemoval = true,cascade = CascadeType.PERSIST)
@@ -34,7 +40,7 @@ public class AccountType implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_TYPE_SEQ")
     @SequenceGenerator(name = "ACCOUNT_TYPE_SEQ", sequenceName = "ACCOUNT_TYPE_ID_SEQ", allocationSize = 1)
-    @Column(name = "ACCOUNT_TYPE_ID", nullable = false)
+    @Column(name = "ACCOUNT_TYPE_ID")
     public Long getAccountTypeId() {
         return accountTypeId;
     }
@@ -46,7 +52,7 @@ public class AccountType implements Serializable {
 
     @Column(name = "CREATION_DATE")
     public LocalDate getCreationDate() {
-        return CreationDate;
+        return creationDate;
     }
 
     public void setAccountTypeId(Long accountTypeId) {
@@ -58,8 +64,9 @@ public class AccountType implements Serializable {
     }
 
     public void setCreationDate(LocalDate creationDate) {
-        CreationDate = creationDate;
+        this.creationDate = creationDate;
     }
+
     public void setMemberAccountSet(Set<MemberAccount> memberAccountSet) {
         this.memberAccountSet = memberAccountSet;
     }

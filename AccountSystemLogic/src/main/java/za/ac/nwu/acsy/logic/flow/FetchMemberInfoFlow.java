@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FetchMemberInfoFlow {
     List<MemberInfoDto> getAllMembers();
+
+   //MemberInfoDto createMember(MemberInfoDto memberInfoDto);
 }

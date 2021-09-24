@@ -1,3 +1,9 @@
-za\ac\nwu\acsy\logic\flow\impl\FetchAccountTypeFLowImpl.class
+za\ac\nwu\acsy\logic\flow\CreateAccountTypeFlow.class
+za\ac\nwu\acsy\logic\flow\FetchMemberInfoFlow.class
+za\ac\nwu\acsy\logic\flow\CreateMemberInfoFlow.class
+za\ac\nwu\acsy\logic\flow\impl\CreateMemberInfoFlowImpl.class
 za\ac\nwu\acsy\logic\flow\FetchAccountTypeFlow.class
 za\ac\nwu\acsy\logic\config\LogicConfig.class
+za\ac\nwu\acsy\logic\flow\impl\CreateAccountTypeFlowImpl.class
+za\ac\nwu\acsy\logic\flow\impl\FetchAccountTypeFLowImpl.class
+za\ac\nwu\acsy\logic\flow\impl\FetchMemberInfoFlowImpl.class

@@ -1,6 +1,7 @@
 za\ac\nwu\acsy\domain\dto\AccountTypeDto.class
-za\ac\nwu\acsy\domain\service\GeneralResponse.class
-za\ac\nwu\acsy\domain\persistence\AccountType.class
 za\ac\nwu\acsy\domain\persistence\MemberInfo.class
 za\ac\nwu\acsy\domain\persistence\Transaction.class
+za\ac\nwu\acsy\domain\service\GeneralResponse.class
+za\ac\nwu\acsy\domain\dto\MemberInfoDto.class
+za\ac\nwu\acsy\domain\persistence\AccountType.class
 za\ac\nwu\acsy\domain\persistence\MemberAccount.class
