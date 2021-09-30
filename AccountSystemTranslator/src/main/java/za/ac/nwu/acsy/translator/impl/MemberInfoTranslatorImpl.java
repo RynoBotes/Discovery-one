@@ -13,7 +13,8 @@ import java.util.List;
 @Component
 public class MemberInfoTranslatorImpl implements MemberInfoTranslator {
 
-    MemberInfoRepository memberInfoRepository;
+    private final MemberInfoRepository memberInfoRepository;
+
 
     @Autowired
     public MemberInfoTranslatorImpl(MemberInfoRepository memberInfoRepository) {
@@ -36,17 +37,32 @@ public class MemberInfoTranslatorImpl implements MemberInfoTranslator {
     }
 
     @Override
-    public MemberInfoDto createMember(MemberInfoDto memberInfoDto)
+    public MemberInfoDto getMemberByIdentify(Long memberID)
     {
         try
         {
-
-            MemberInfo memberInfo = memberInfoRepository.save(memberInfoDto.getMemberInfo());
+            MemberInfo memberInfo = memberInfoRepository.getMemberByIdentify(memberID);
             return new MemberInfoDto(memberInfo);
 
         }catch (Exception e)
         {
-            throw new RuntimeException("Unable to save to database",e);
+            throw new RuntimeException("Could not retrieve member from DataBase. ",e);
+        }
+
+    }
+
+    @Override
+    public MemberInfoDto addCurrencyToMember(Long memberID, Long currency)
+    {
+        MemberInfo memberInfo;
+        try
+        {
+            memberInfo = memberInfoRepository.getMemberByIdentify(memberID);
+            memberInfo.setCurrAmount(memberInfo.getCurrAmount()+currency);
+            return new MemberInfoDto(memberInfo);
+        }catch (Exception e)
+        {
+            throw new RuntimeException("Can't update database", e);
         }
 
     }

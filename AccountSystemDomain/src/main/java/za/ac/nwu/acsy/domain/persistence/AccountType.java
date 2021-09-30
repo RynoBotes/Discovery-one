@@ -3,7 +3,8 @@ package za.ac.nwu.acsy.domain.persistence;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "ACCOUNT_TYPE")
@@ -13,7 +14,7 @@ public class AccountType implements Serializable {
     private Long accountTypeId;
     private String accountTypeName;
     private LocalDate creationDate;
-    Set<MemberAccount> memberAccountSet;
+    List<MemberInfo> memberInfoSet;
 
     public AccountType() {
     }
@@ -29,13 +30,6 @@ public class AccountType implements Serializable {
         this.accountTypeName = accountTypeName;
         this.creationDate = creationDate;
     }
-
-    @OneToMany(targetEntity = MemberAccount.class,fetch = FetchType.LAZY, mappedBy = "accountTypeId",orphanRemoval = true,cascade = CascadeType.PERSIST)
-    public Set<MemberAccount> getMemberAccountSet() {
-        return memberAccountSet;
-    }
-
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ACCOUNT_TYPE_SEQ")
@@ -55,6 +49,15 @@ public class AccountType implements Serializable {
         return creationDate;
     }
 
+    @OneToMany(targetEntity = MemberInfo.class, fetch = FetchType.LAZY, mappedBy = "accountType", orphanRemoval = true, cascade = CascadeType.PERSIST)
+    public List<MemberInfo> getMemberInfoSet() {
+        return memberInfoSet;
+    }
+
+    public void setMemberInfoSet(List<MemberInfo> memberInfoSet) {
+        this.memberInfoSet = memberInfoSet;
+    }
+
     public void setAccountTypeId(Long accountTypeId) {
         this.accountTypeId = accountTypeId;
     }
@@ -67,8 +70,26 @@ public class AccountType implements Serializable {
         this.creationDate = creationDate;
     }
 
-    public void setMemberAccountSet(Set<MemberAccount> memberAccountSet) {
-        this.memberAccountSet = memberAccountSet;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountType that = (AccountType) o;
+        return Objects.equals(accountTypeId, that.accountTypeId) && Objects.equals(accountTypeName, that.accountTypeName) && Objects.equals(creationDate, that.creationDate) && Objects.equals(memberInfoSet, that.memberInfoSet);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountTypeId, accountTypeName, creationDate, memberInfoSet);
+    }
+
+    @Override
+    public String toString() {
+        return "AccountType{" +
+                "accountTypeId=" + accountTypeId +
+                ", accountTypeName='" + accountTypeName + '\'' +
+                ", creationDate=" + creationDate +
+                ", memberInfoSet=" + memberInfoSet +
+                '}';
+    }
 }

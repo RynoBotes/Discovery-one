@@ -1,11 +1,11 @@
 package za.ac.nwu.acsy.logic.flow.impl;
 
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.nwu.acsy.domain.dto.AccountTypeDto;
 import za.ac.nwu.acsy.logic.flow.CreateAccountTypeFlow;
 import za.ac.nwu.acsy.translator.AccountTypeTranslator;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 
 @Transactional
@@ -14,7 +14,6 @@ public class CreateAccountTypeFlowImpl implements CreateAccountTypeFlow
 {
     private final AccountTypeTranslator accountTypeTranslator;
 
-    //@Autowired
     public CreateAccountTypeFlowImpl(AccountTypeTranslator accountTypeTranslator)
     {
         this.accountTypeTranslator = accountTypeTranslator;

@@ -4,8 +4,12 @@ import za.ac.nwu.acsy.domain.dto.MemberInfoDto;
 
 import java.util.List;
 
-public interface MemberInfoTranslator {
+public interface MemberInfoTranslator
+{
     List<MemberInfoDto> getAllMembers();
 
-    MemberInfoDto createMember(MemberInfoDto memberInfoDto);
+    MemberInfoDto getMemberByIdentify(Long memberID);
+
+
+    MemberInfoDto addCurrencyToMember(Long memberID, Long currency);
 }

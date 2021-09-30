@@ -2,11 +2,11 @@ package za.ac.nwu.acsy.logic.flow.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.nwu.acsy.domain.dto.AccountTypeDto;
 import za.ac.nwu.acsy.logic.flow.FetchAccountTypeFlow;
 import za.ac.nwu.acsy.translator.AccountTypeTranslator;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional

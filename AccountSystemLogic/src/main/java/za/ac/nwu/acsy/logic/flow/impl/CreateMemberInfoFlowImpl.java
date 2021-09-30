@@ -1,12 +1,9 @@
 package za.ac.nwu.acsy.logic.flow.impl;
 
 import org.springframework.stereotype.Component;
-import za.ac.nwu.acsy.domain.dto.MemberInfoDto;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.nwu.acsy.logic.flow.CreateMemberInfoFlow;
 import za.ac.nwu.acsy.translator.MemberInfoTranslator;
-
-import javax.transaction.Transactional;
-import java.time.LocalDate;
 
 @Transactional
 @Component
@@ -20,13 +17,17 @@ public class CreateMemberInfoFlowImpl implements CreateMemberInfoFlow
     }
 
 
-    @Override
-    public MemberInfoDto createMember(MemberInfoDto memberInfo)
-    {
-        if(null == memberInfo.getJoinDate())
-        {
-            memberInfo.setJoinDate(LocalDate.now());
-        }
-        return memberInfoTranslator.createMember(memberInfo);
-    }
+//    @Override
+//    public MemberInfoDto createMember(MemberInfoDto memberInfo, AccountTypeDto accountTypeDto)
+//    {
+//        if(null == memberInfo.getJoinDate())
+//        {
+//            memberInfo.setJoinDate(LocalDate.now());
+//        }
+//        if(null == memberInfo.getCurrAmount())
+//        {
+//            memberInfo.setCurrAmount(0L);
+//        }
+//        return memberInfoTranslator.createMember(memberInfo, accountTypeDto);
+//    }
 }

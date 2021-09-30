@@ -7,5 +7,8 @@ import java.util.List;
 public interface FetchMemberInfoFlow {
     List<MemberInfoDto> getAllMembers();
 
-   //MemberInfoDto createMember(MemberInfoDto memberInfoDto);
+    MemberInfoDto getMemberByNumber(Long memberID);
+
+
+    MemberInfoDto addCurrency(Long memberID, Long currency);
 }
