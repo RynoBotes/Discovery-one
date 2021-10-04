@@ -33,5 +33,10 @@ public class FetchAccountTypeFLowImpl implements FetchAccountTypeFlow
         return accountTypeTranslator.getAccountTypeByName(accountTypeName);
     }
 
+    public boolean methodToTest()
+    {
+        return true;
+    }
+
 
 }

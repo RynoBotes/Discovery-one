@@ -58,7 +58,13 @@ public class MemberInfoTranslatorImpl implements MemberInfoTranslator {
         try
         {
             memberInfo = memberInfoRepository.getMemberByIdentify(memberID);
-            memberInfo.setCurrAmount(memberInfo.getCurrAmount()+currency);
+            if(memberInfo.getCurrAmount()+currency > 0 )
+            {
+                memberInfo.setCurrAmount(memberInfo.getCurrAmount() + currency);
+            }else
+            {
+                throw new RuntimeException();
+            }
             return new MemberInfoDto(memberInfo);
         }catch (Exception e)
         {
